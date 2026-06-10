@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferrari Luce — 光 / Light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Archivo:wght@300;400;500;600&family=Noto+Serif+TC:wght@300;400;600&family=Train+One&display=swap" rel="stylesheet">
+  <style>
+    /* Ferro Rosso —— 標題英文字體。請下載 FerroRosso.ttf 放入網站旁的 fonts/ 資料夾。
+     未放置時會自動退回 Playfair Display，不影響版面。 */
+    @font-face {
+      font-family: 'Ferro Rosso';
+      src: url('fonts/FerroRosso.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --rosso: #E10600;
+      --rosso-deep: #9c0500;
+      --ink: #08080a;
+      --ink-2: #0e0e12;
+      --panel: #141418;
+      --line: rgba(255, 255, 255, .10);
+      --text: #f3f1ee;
+      --muted: #9a958e;
+      --gold: #c9a24b;
+      --display: 'Playfair Display', serif;
+      --title: 'Ferro Rosso', 'Playfair Display', 'Noto Serif TC', serif;
+      --body: 'Archivo', sans-serif;
+      --tc: 'Noto Serif TC', serif;
+      --Inline: 'Train One', system-ui;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--rosso);
+      color: #fff
+    }
+
+    .zh {
+      font-family: var(--tc);
+      font-weight: 300
+    }
+
+    .en-label {
+      font-family: var(--body);
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      font-size: .66rem;
+      color: var(--rosso)
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      background: linear-gradient(180deg, rgba(8, 8, 10, .92), rgba(8, 8, 10, 0));
+      backdrop-filter: blur(2px);
+    }
+
+    .brand {
+      font-family: var(--title);
+      font-weight: 700;
+      font-size: 1.5rem;
+      /*letter-spacing: .18em*/
+    }
+
+    .brand span {
+      font-family:var(--Inline);
+      font-size: 1rem;
+      color:#000;
+      background:var(--text);
+      border-radius: 4px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: color .3s
+    }
+
+    .nav-links a:hover {
+      color: var(--text)
+    }
+
+    @media(max-width:760px) {
+      .nav-links {
+        display: none
+      }
+    }
+
+
+  /* ---------- HERO ---------- */
+  header{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    overflow:hidden;
+    background:radial-gradient(120% 90% at 70% 0%,#1a0203 0%,#0b0507 38%,var(--ink) 72%);
+  }
+  /* light rays — the "Luce" concept (continuous loop) */
+  .rays{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.55}
+  .ray{position:absolute;top:-30%;left:50%;width:36px;margin-left:-18px;height:160%;
+    background:linear-gradient(180deg,transparent,rgba(225,6,0,.55),transparent);
+    transform-origin:top center;filter:blur(8px);
+    transform:rotate(var(--r));
+    clip-path:polygon(49% 0%, 51% 0%, 100% 100%, 0% 100%);
+    animation:sweep 9s ease-in-out infinite}
+  .ray:nth-child(1){--r:-18deg;animation-delay:0s}
+  .ray:nth-child(2){--r:-9deg;animation-delay:1.2s;background:linear-gradient(180deg,transparent,rgba(255,255,255,.25),transparent)}
+  .ray:nth-child(3){--r:0deg;animation-delay:2.4s}
+  .ray:nth-child(4){--r:9deg;animation-delay:1.8s;background:linear-gradient(180deg,transparent,rgba(201,162,75,.4),transparent)}
+  .ray:nth-child(5){--r:18deg;animation-delay:.6s;background:linear-gradient(180deg,transparent,rgba(0,201,255,.25),transparent)}
+  @keyframes sweep{
+    0%,100%{opacity:.18;transform:rotate(var(--r)) scaleY(.9)}
+    50%{opacity:.85;transform:rotate(var(--r)) scaleY(1.05)}
+  }
+  .grain{position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .hero-content{position:relative;z-index:5;text-align:center}
+  .hero-eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px;opacity:0;animation:rise .9s .2s forwards}
+  .hero-eyebrow .bar{width:46px;height:1px;background:var(--rosso)}
+  .hero-eyebrow span{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+  h1{
+    font-family:var(--title);
+    font-weight:400;
+    line-height:.8;
+    letter-spacing:0em;
+     font-size:clamp(5rem,18vw,15rem);
+     margin-bottom:6px;
+     opacity:0;
+     animation:rise 1s .35s forwards
+   }
+  
+  h1 b{
+    font-family:var(--Inline);
+    font-style:normal;
+    font-weight:600;
+    font-size:8rem;
+    color:#000;
+    background:var(--text);
+    border-radius: 36px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  h1 em {
+    letter-spacing: 0.05em;
+    font-style: normal;
+  }
+
+  .hero-sub{font-family:var(--tc);font-weight:300;font-size:clamp(1.1rem,2.6vw,1.7rem);
+    color:var(--muted);letter-spacing:.05em;max-width:720px;margin:50px auto 0;opacity:0;animation:rise 1s .55s forwards}
+  .hero-sub b{color:var(--text);font-weight:400}
+  .hero-meta{display:flex;justify-content:center;gap:46px;margin-top:54px;flex-wrap:wrap;opacity:0;animation:rise 1s .75s forwards}
+  .hero-meta div span{display:block}
+  .hero-meta .k{font-family:var(--display);font-size:2rem;color:var(--rosso)}
+  .hero-meta .l{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  @keyframes rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: 120px 0;
+      position: relative
+    }
+
+    .sec-head {
+      margin-bottom: 64px;
+      max-width: 760px
+    }
+
+    .sec-head h2 {
+      font-family: var(--title);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      margin: 14px 0 18px
+    }
+
+    .sec-head .zh-h {
+      font-family: var(--tc);
+      font-weight: 300;
+      color: var(--rosso)
+    }
+
+    .sec-head .Playfair {
+      font-family: var(--display);
+      font-weight: 300;
+      color: var(--text)
+    }
+
+    .sec-head p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      max-width: 600px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* ---------- DESIGN PHILOSOPHY ---------- */
+    #design {
+      background: linear-gradient(180deg, var(--ink), var(--ink-2))
+    }
+
+    .phil-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line)
+    }
+
+    .phil {
+      background: var(--ink);
+      padding: 42px 34px;
+      transition: background .4s
+    }
+
+    .phil:hover {
+      background: var(--panel)
+    }
+
+    .phil .num {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--rosso);
+      margin-bottom: 22px
+    }
+
+    .phil h3 {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 6px
+    }
+
+    .phil h3 .zh {
+      display: block;
+      font-size: .95rem;
+      color: var(--muted);
+      margin-top: 6px
+    }
+
+    .phil p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 14px
+    }
+
+    @media(max-width:860px) {
+      .phil-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ---------- SPECS ---------- */
+    #specs {
+      background: var(--ink-2)
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line)
+    }
+
+    .spec {
+      background: var(--ink-2);
+      padding: 38px 26px
+    }
+
+    .spec .v {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.4vw, 3.1rem);
+      line-height: 1;
+      color: var(--text)
+    }
+
+    .spec .v small {
+      font-size: 1rem;
+      color: var(--rosso);
+      font-family: var(--body);
+      font-weight: 500;
+      margin-left: 4px
+    }
+
+    .spec .l {
+      margin-top: 14px;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .spec .l .zh {
+      display: block;
+      font-size: .82rem;
+      letter-spacing: 0;
+      color: #c4bfb7;
+      margin-top: 3px
+    }
+
+    @media(max-width:860px) {
+      .spec-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    /* ---------- IVE ---------- */
+  #ive{background:linear-gradient(180deg,var(--ink-2),var(--ink))}
+  .ive-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:start}
+  .ive-quote{font-family:var(--display);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.35}
+  .ive-quote::before{content:"“";color:var(--rosso);font-size:2em;line-height:0;vertical-align:-.35em;margin-right:.05em}
+  .ive-attr{margin-top:28px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .ive-attr b{color:var(--rosso)}
+  .ive-body p{color:var(--muted);margin-bottom:18px}
+  .ive-body p .zh{color:#cfcac2}
+  .ive-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .ive-tags span{border:1px solid var(--line);padding:7px 14px;border-radius:40px;font-size:.74rem;letter-spacing:.08em;color:var(--muted)}
+  .ive-photo{position:relative;width:100%;aspect-ratio:4/3;margin-bottom:30px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+  .ive-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .ive-photo .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;
+    background:repeating-linear-gradient(45deg,#141418,#141418 12px,#17171c 12px,#17171c 24px)}
+  .ive-photo .ph .ico{font-family:var(--display);font-style:italic;font-size:1.4rem;color:var(--rosso);opacity:.7;margin-bottom:10px}
+  .ive-photo .ph .fn{font-size:.72rem;color:var(--muted);line-height:1.6}
+  .ive-photo .ph .fn code{color:#cfcac2;background:rgba(255,255,255,.05);padding:2px 7px;border-radius:4px}
+  .ive-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;
+    background:linear-gradient(0deg,rgba(0,0,0,.82),transparent);font-size:.74rem;color:#e8e4dd}
+  .ive-photo figcaption .zh{display:block;color:var(--muted);font-size:.68rem;margin-top:2px}
+  @media(max-width:860px){.ive-layout{grid-template-columns:1fr;gap:40px}}
+
+    /* ---------- COMPARISON ---------- */
+    #compare {
+      background: var(--ink)
+    }
+
+    .cmp {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .92rem
+    }
+
+    .cmp th,
+    .cmp td {
+      padding: 20px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .cmp thead th {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--rosso)
+    }
+
+    .cmp thead th.luce {
+      color: var(--rosso)
+    }
+
+    .cmp thead th .zh {
+      display: block;
+      font-size: .74rem;
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-top: 4px;
+      font-weight: 300
+    }
+
+    .cmp td:first-child {
+      color: var(--muted);
+      font-size: .74rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      width: 30%
+    }
+
+    .cmp td:first-child .zh {
+      display: block;
+      color: #c4bfb7;
+      font-size: .86rem;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 3px
+    }
+
+    .cmp td.luce {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    .listen-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 7px;
+      font-size: .74rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--rosso);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, color .3s;
+      width: fit-content
+    }
+
+    .listen-link:hover {
+      color: #ff352f;
+      border-bottom-color: #ff352f
+    }
+
+    .listen-link svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0
+    }
+
+    .cmp tr:hover td {
+      background: rgba(225, 6, 0, .04)
+    }
+
+    @media(max-width:760px) {
+      .cmp {
+        font-size: .8rem
+      }
+
+      .cmp th,
+      .cmp td {
+        padding: 14px 8px
+      }
+    }
+
+    /* ---------- GALLERY ---------- */
+    #gallery {
+      background: linear-gradient(180deg, var(--ink), var(--ink-2))
+    }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 200px;
+      gap: 14px
+    }
+
+    .gal-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--panel)
+    }
+
+    .gal-item.wide {
+      grid-column: span 4
+    }
+
+    .gal-item.tall {
+      grid-column: span 2;
+      grid-row: span 2
+    }
+
+    .gal-item.std {
+      grid-column: span 2
+    }
+
+    .gal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+      filter: saturate(.95);
+      cursor: zoom-in
+    }
+
+    .gal-item:hover img {
+      transform: scale(1.06)
+    }
+
+    /* placeholder shown until a real image is dropped in */
+    .gal-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 18px;
+      background: repeating-linear-gradient(45deg, #141418, #141418 12px, #17171c 12px, #17171c 24px)
+    }
+
+    .gal-ph .ico {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--rosso);
+      opacity: .7;
+      margin-bottom: 10px
+    }
+
+    .gal-ph .fn {
+      font-size: .72rem;
+      letter-spacing: .06em;
+      color: var(--muted)
+    }
+
+    .gal-ph .fn code {
+      color: #cfcac2;
+      background: rgba(255, 255, 255, .05);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: .78rem
+    }
+
+    .gal-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      z-index: 3;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .85), transparent);
+      font-size: .78rem;
+      color: #e8e4dd;
+      letter-spacing: .04em;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: .4s
+    }
+
+    .gal-item:hover .gal-cap {
+      transform: none;
+      opacity: 1
+    }
+
+    .gal-cap .zh {
+      display: block;
+      color: var(--muted);
+      font-size: .72rem;
+      margin-top: 2px
+    }
+
+    .gal-note {
+      margin-top: 26px;
+      font-size: .78rem;
+      color: #6b675f;
+      line-height: 1.7;
+      border-left: 2px solid var(--rosso);
+      padding-left: 16px
+    }
+
+    .gal-note code {
+      color: #cfcac2;
+      background: rgba(255, 255, 255, .05);
+      padding: 1px 6px;
+      border-radius: 4px
+    }
+
+    @media(max-width:860px) {
+      .gal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 170px
+      }
+
+      .gal-item.wide,
+      .gal-item.tall,
+      .gal-item.std {
+        grid-column: span 2;
+        grid-row: span 1
+      }
+    }
+
+    /* ---------- CONTROVERSY ---------- */
+    #controversy {
+      background: linear-gradient(180deg, var(--ink), #120203)
+    }
+
+    .tabs {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 50px;
+      padding: 5px;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, .02)
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: var(--muted);
+      font-family: var(--body);
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 11px 26px;
+      border-radius: 50px;
+      transition: .35s;
+      position: relative
+    }
+
+    .tab-btn .zh {
+      font-family: var(--tc);
+      text-transform: none;
+      letter-spacing: 0;
+      margin-left: 8px;
+      font-size: .86rem
+    }
+
+    .tab-btn.active {
+      color: #fff
+    }
+
+    .tab-btn.active[data-side="neg"] {
+      background: var(--rosso)
+    }
+
+    .tab-btn.active[data-side="pos"] {
+      background: var(--gold);
+      color: #1a1305
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fade .5s ease
+    }
+
+    .tab-panel.active {
+      display: block
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .ctrl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px
+    }
+
+    .ctrl-card {
+      border: 1px solid var(--line);
+      padding: 34px;
+      background: rgba(255, 255, 255, .015);
+      position: relative;
+      overflow: hidden
+    }
+
+    .ctrl-card.neg {
+      border-left: 2px solid var(--rosso)
+    }
+
+    .ctrl-card.pos {
+      border-left: 2px solid var(--gold)
+    }
+
+    .ctrl-card .tag {
+      font-size: .66rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: block
+    }
+
+    .ctrl-card.neg .tag {
+      color: var(--rosso)
+    }
+
+    .ctrl-card.pos .tag {
+      color: var(--gold)
+    }
+
+    .ctrl-card blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.4;
+      margin-bottom: 16px
+    }
+
+    .ctrl-card .src {
+      font-size: .76rem;
+      color: var(--muted);
+      letter-spacing: .06em
+    }
+
+    .ctrl-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 14px
+    }
+
+    .ctrl-card p .zh {
+      color: #cfcac2
+    }
+
+    .nicknames {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 40px 0 8px
+    }
+
+    .nick {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 1.05rem;
+      padding: 10px 20px;
+      border: 1px dashed var(--line);
+      color: #cfcac2
+    }
+
+    .stock {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 46px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line)
+    }
+
+    .stock div .k {
+      font-family: var(--display);
+      font-size: 2.4rem;
+      color: var(--rosso)
+    }
+
+    .stock div .l {
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px
+    }
+
+    .stock div .l .zh {
+      display: block;
+      color: #c4bfb7;
+      letter-spacing: 0;
+      font-size: .82rem;
+      margin-top: 2px
+    }
+
+    @media(max-width:760px) {
+      .ctrl-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ---------- LIGHTBOX ---------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(4, 4, 6, .94);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    .lb-fig {
+      max-width: 90vw;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(.94);
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1)
+    }
+
+    .lightbox.open .lb-fig {
+      transform: scale(1)
+    }
+
+    .lb-fig img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .6)
+    }
+
+    .lb-cap {
+      margin-top: 16px;
+      font-size: .86rem;
+      color: #e8e4dd;
+      letter-spacing: .04em;
+      text-align: center
+    }
+
+    .lb-cap .zh {
+      display: block;
+      color: var(--muted);
+      font-size: .76rem;
+      margin-top: 3px
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 26px;
+      right: 32px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+      color: var(--text);
+      font-size: 1.3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s
+    }
+
+    .lb-close:hover {
+      background: var(--rosso);
+      border-color: var(--rosso)
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .04);
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s;
+      user-select: none
+    }
+
+    .lb-nav:hover {
+      background: var(--rosso);
+      border-color: var(--rosso)
+    }
+
+    .lb-prev {
+      left: 26px
+    }
+
+    .lb-next {
+      right: 26px
+    }
+
+    .lb-count {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .74rem;
+      letter-spacing: .2em;
+      color: var(--muted)
+    }
+
+    @media(max-width:760px) {
+      .lb-nav {
+        width: 42px;
+        height: 42px
+      }
+
+      .lb-prev {
+        left: 10px
+      }
+
+      .lb-next {
+        right: 10px
+      }
+    }
+
+    /* ---------- VIDEOS ---------- */
+  #videos{background:linear-gradient(180deg,#120203,var(--ink))}
+  .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .vid-card{display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);
+    background:rgba(255,255,255,.015);transition:border-color .35s,transform .35s,background .35s}
+  .vid-card:hover{border-color:var(--rosso);transform:translateY(-4px);background:rgba(225,6,0,.05)}
+  .vid-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+  .vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .vid-card:hover .vid-thumb img{transform:scale(1.05)}
+  .vid-thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .vid-thumb .play span{width:54px;height:54px;border-radius:50%;background:rgba(8,8,10,.6);
+    border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;
+    backdrop-filter:blur(2px);transition:background .35s}
+  .vid-card:hover .play span{background:var(--rosso);border-color:var(--rosso)}
+  .vid-thumb .play svg{width:20px;height:20px;margin-left:3px;fill:#fff}
+  .vid-info{padding:18px 20px}
+  .vid-info .t{font-family:var(--display);font-size:1.1rem;font-weight:500;color:var(--text);line-height:1.3}
+  .vid-info .t .zh{display:block;font-family:var(--tc);font-weight:300;font-size:.86rem;color:var(--muted);margin-top:5px}
+  .vid-info .meta{margin-top:12px;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rosso);display:flex;align-items:center;gap:6px}
+  @media(max-width:860px){.vid-grid{grid-template-columns:1fr}}
+
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #050506;
+      padding: 80px 0 50px;
+      border-top: 1px solid var(--line)
+    }
+
+    .foot-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 30px
+    }
+
+    .foot-top .big {
+      font-family: var(--title);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1
+    }
+
+    .foot-top .big b {
+      font-family:var(--Inline);
+      font-size: 2.5rem;
+      color:#000;
+      background:var(--text);
+      border-radius: 8px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-style: normal;
+    }
+
+    .foot-top .big em {
+      letter-spacing: 0.1em;
+      font-style: normal;
+    }
+
+    .brand {
+      font-family: var(--title);
+      font-weight: 700;
+      font-size: 1.5rem;
+      /*letter-spacing: .18em*/
+    }
+
+    .disclaimer {
+      margin-top: 54px;
+      font-size: .74rem;
+      color: #5c5852;
+      line-height: 1.7;
+      max-width: 760px
+    }
+
+    .disclaimer a {
+      color: var(--muted)
+    }
+
+    .credits {
+      margin-top: 30px;
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #46433e
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="brand">Ferrari <span>LUCE</span></div>
+    <div class="nav-links">
+      <a href="#design">設計 Design</a>
+      <a href="#specs">規格 Specs</a>
+      <a href="#ive">Jony Ive</a>
+      <a href="#compare">比較 Compare</a>
+      <a href="#gallery">照片 Gallery</a>
+      <a href="#controversy">爭議 Debate</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header>
+    <div class="rays">
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+    </div>
+    <div class="grain"></div>
+    <div class="wrap hero-content">
+      <div class="hero-eyebrow"><span class="bar"></span><span>Maranello · F222 · 2026</span></div>
+      <h1>Ferrari <b><em>LUC</em>E</b></h1>
+      <p class="hero-sub"><b>「光」</b>—法拉利首款純電量產車。<br>The first all-electric Ferrari. <span
+          style="color:var(--text)">Italian for light.</span></p>
+      <div class="hero-meta">
+        <div><span class="k">1,000+</span><span class="l">馬力 Horsepower</span></div>
+        <div><span class="k">2.5s</span><span class="l">0–100 km/h</span></div>
+        <div><span class="k">€550K</span><span class="l">起售價 Starting Price</span></div>
+        <div><span class="k">Q4 ’26</span><span class="l">交車 Deliveries</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== DESIGN PHILOSOPHY ===== -->
+  <section id="design">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="en-label">Design Philosophy</div>
+        <h2>設計理念 <span class="zh-h">／<br/>Not just another Ferrari</span></h2>
+        <p>歷時五年打造，Luce 刻意揮別法拉利侵略性、肌肉感的傳統語彙，轉向以光與通透為核心的全新設計哲學。A five-year project that deliberately breaks from Ferrari's
+          aggressive, muscular signature.</p>
+      </div>
+      <div class="phil-grid reveal">
+      <div class="phil">
+        <div class="num">01 — Luce / Light</div>
+        <h3>以光為名<span class="zh">A car named after light</span></h3>
+        <p>「Luce」義大利文意為「光」。大面積玻璃與通透車體取代了厚重的金屬塊面，光線成為設計的主角。Expansive, glass-led surfaces replace heavy metal mass.</p>
+      </div>
+      <div class="phil">
+        <div class="num">02 — Family GT</div>
+        <h3>首款五人座<span class="zh">Ferrari's first five-seater</span></h3>
+        <p>四門五座、600 公升行李廂，瞄準「口袋夠深的家庭」。一輛能載著全家的法拉利，這在品牌史上前所未見。A four-door, five-seat Ferrari built for families with deep pockets.</p>
+      </div>
+      <div class="phil">
+        <div class="num">03 — The Sound</div>
+        <h3>放大的電動聲浪<span class="zh">An amplified EV voice</span></h3>
+        <p>Luce 放大電動動力系統的自然振動聲響，試圖在無內燃機的時代，保留法拉利那份感官上的激情。Amplified natural powertrain vibrations preserve the visceral Ferrari thrill.</p>
+      </div>
+      <div class="phil">
+        <div class="num">04 — Cockpit</div>
+        <h3>軟硬整合的座艙<span class="zh">Hardware & software as one</span></h3>
+        <p>實體架構與數位介面當成同一套系統共同開發：高頻、需盲操作的功能交給實體按鍵，深層設定才進觸控螢幕。Physical controls and the digital interface, designed as one cohesive system.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ===== SPECS ===== -->
+  <section id="specs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en-label">Technical Data</div>
+      <h2>規格數據 <span class="zh-h">／<br/>Specifications</span></h2>
+      <p>四具獨立電動馬達（每輪一具）、專屬 800V 平台與 122 kWh 電池組，構成這部重達 2.2 噸的純電猛獸。Four motors, a bespoke 800V platform and a 122 kWh battery.</p>
+    </div>
+    <div class="spec-grid reveal">
+      <div class="spec"><div class="v">772<small>kW</small></div><div class="l">Peak Power<span class="zh">最大馬力（約 1,035 hp）</span></div></div>
+      <div class="spec"><div class="v">4<small>×</small></div><div class="l">Electric Motors<span class="zh">電動馬達 · 每輪一具</span></div></div>
+      <div class="spec"><div class="v">310<small>+km/h</small></div><div class="l">Top Speed<span class="zh">極速</span></div></div>
+      <div class="spec"><div class="v">2.5<small>s</small></div><div class="l">0–100 km/h<span class="zh">百公里加速</span></div></div>
+      <div class="spec"><div class="v">122<small>kWh</small></div><div class="l">Battery (SK On)<span class="zh">NMC 電池組</span></div></div>
+      <div class="spec"><div class="v">~530<small>km</small></div><div class="l">Range<span class="zh">續航里程（WLTP）</span></div></div>
+      <div class="spec"><div class="v">350<small>kW</small></div><div class="l">DC Charging<span class="zh">直流快充 · 800V 平台</span></div></div>
+      <div class="spec"><div class="v">47:53</div><div class="l">Weight Distribution<span class="zh">前後配重</span></div></div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== JONY IVE ===== -->
+  <section id="ive">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="en-label">The Collaboration</div>
+        <h2>蘋果靈魂跨界 <span class="zh-h">／<br/>Jony Ive & LoveFrom</span></h2>
+      </div>
+      <div class="ive-layout reveal">
+        <div class="ive-body">
+          <p class="ive-quote">這是一輛注定引發爭議的車——但偉大的設計，從來不為討好而生。</p>
+          <p class="ive-quote" style="font-size:1.1rem;font-style:normal;margin-top:18px;color:var(--muted)">A car destined to be controversial — great design never sets out merely to please.</p>
+          <div class="ive-attr">改寫自 / Paraphrased — <b>Jony Ive</b> 對 Luce 的預告 · Feb 2026</div>
+          <p style="margin-top:30px"><span class="zh">Luce 的內外觀設計，由前蘋果首席設計官 Sir Jony Ive 與工業設計師 Marc Newson 共同創立的設計團隊 LoveFrom 操刀。</span></p>
+        <p>The exterior and interior were executed by LoveFrom — the San Francisco collective founded by former Apple chief design officer Sir Jony Ive and designer Marc Newson.</p>
+        <p><span class="zh">關鍵分工在於：這次內裝「與」外觀的主設計，都交給了 LoveFrom——而非 Ferrari 過去一手主導造型的設計中心 Centro Stile。Centro Stile 與設計總監 Flavio Manzoni 的角色轉為協同合作、把關與工程整合（例如與康寧共同開發「玻璃屋」車體玻璃）。把主設計權交給外部團隊，正是這場爭議的起點。</span></p>
+        <p>For the first time, LoveFrom led both exterior and interior — with Ferrari's Centro Stile and Flavio Manzoni shifting to a collaborating, integrating role.</p>
+          <div class="ive-tags">
+            <span>Minimalist Interior 極簡座艙</span>
+            <span>iMac · iPhone Designer</span>
+            <span>LoveFrom × Centro Stile</span>
+            <span>Screen-led Cockpit</span>
+          </div>
+        </div>
+        <figure class="ive-photo">
+          <img src="https://sharpmagazine.com/wp-content/uploads/2026/05/Jony-Ive-and-Marc-Newson-New-Vision-for-Cars-PHOTOS-COURTESY-OF-FERRARI-5-2026-.jpg" alt="Jony Ive 與 Marc Newson 合照" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">
+            <div class="ico">LoveFrom</div>
+            <div class="fn">放入有授權的合照<br><code>images/ive-newson.jpg</code><br>或在 src 改填你有權使用的連結</div>
+          </div>
+          <figcaption>Jony Ive, Marc Newson 與 Ferrari 高層 <span class="zh">© Sharp Magazine, 2026</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPARISON ===== -->
+  <section id="compare">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="en-label">Old World vs New</div>
+        <h2>與傳統法拉利的對照 <span class="zh-h">／<br/>A Radical Shift</span></h2>
+        <p>Luce 在幾乎每一個維度上都偏離了法拉利的經典公式。以下以品牌典型雙座超跑作為對照。Compared against a classic Ferrari two-seater formula.</p>
+      </div>
+      <div class="reveal" style="overflow-x:auto">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Classic Ferrari<span class="zh">傳統法拉利</span></th>
+              <th class="luce">Luce<span class="zh">純電新世代</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Powertrain<span class="zh">動力系統</span></td>
+              <td>V8 / V12 內燃機</td>
+              <td class="luce">四具電動馬達 · 純電</td>
+            </tr>
+            <tr>
+              <td>Sound<span class="zh">聲浪</span></td>
+              <td>自然進氣／渦輪排氣轟鳴</td>
+              <td class="luce">放大的電動振動聲<br><a class="listen-link" href="https://www.youtube.com/watch?v=NKXQlzr75lo"
+                  target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 5 6 9H2v6h4l5 4V5z" />
+                    <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                    <path d="M19 5a9 9 0 0 1 0 14" />
+                  </svg>聆聽 Luce 的聲音（影片）↗</a></td>
+            </tr>
+            <tr>
+              <td>Seating<span class="zh">座位</span></td>
+              <td>雙座 / 2+2</td>
+              <td class="luce">四門五座（品牌首見）</td>
+            </tr>
+            <tr>
+              <td>Silhouette<span class="zh">車身姿態</span></td>
+              <td>低伏、肌肉、侵略性</td>
+              <td class="luce">高大、通透、玻璃主導</td>
+            </tr>
+            <tr>
+              <td>Design Lead<span class="zh">設計主導</span></td>
+              <td>Centro Stile Ferrari</td>
+              <td class="luce">LoveFrom 主導，Centro Stile 協作</td>
+            </tr>
+            <tr>
+              <td>Layout<span class="zh">佈局</span></td>
+              <td>中置引擎 Mid-engine</td>
+              <td class="luce">四輪馬達 · 800V 平台</td>
+            </tr>
+            <tr>
+              <td>Audience<span class="zh">客群</span></td>
+              <td>純粹駕馭者</td>
+              <td class="luce">追求科技的富裕家庭</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY (real photos go here) ===== -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="en-label">Gallery</div>
+        <h2>真實照片 <span class="zh-h">／<br /> The Car in Light</span></h2>
+        <p>從通透的玻璃車身、到由 LoveFrom 操刀的座艙——隨動儀錶、實體按鍵、可轉向的 OLED 螢幕與雕塑座椅，每個細節都藏著明確的互動考量。以下影像捕捉了 Luce 如何以「光」重新詮釋法拉利。點圖可放大細看。From the glass-led body to the LoveFrom-designed cabin — rotating binnacle, physical switches, a tilting OLED screen and sculpted seats — these images capture how the Luce reimagines Ferrari through light. Click any image to enlarge.</p>
+      </div>
+      <div class="gal-grid reveal" id="galGrid"><!-- 由 JS 依 GALLERY 清單產生 / rendered from GALLERY list --></div>
+      <!-- <p class="gal-note reveal">
+        圖片可填本機路徑或外部連結，但兩種方式都屬於在本網站重製官方素材，請自行確認已取得授權；外部連結（hotlink）還可能因對方 CDN 防盜連而無法載入。本頁僅供內部分享。<br>
+        Both local files and external URLs reproduce the source image on this page — ensure you have the right to use
+        them. Hotlinked URLs may also fail if the host blocks external embedding. Internal use only.
+      </p> -->
+    </div>
+  </section>
+
+
+  <!-- ===== CONTROVERSY ===== -->
+  <section id="controversy">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="en-label">The Backlash</div>
+        <h2>輿論爭議 <span class="zh-h">／ <br/>A Social Media Firestorm</span></h2>
+        <p>2026 年 5 月發表後，Luce 旋即成為法拉利史上最具爭議的量產車。外型與定價同時點燃了股市與社群的怒火。Within hours of its reveal, the Luce became
+          Maranello's most divisive production car.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="tabs" role="tablist">
+          <button class="tab-btn active" data-side="neg" data-target="panel-neg" role="tab">反方 Critics<span class="zh">／
+              砲火</span></button>
+          <button class="tab-btn" data-side="pos" data-target="panel-pos" role="tab">正方 Defenders<span class="zh">／
+              辯護</span></button>
+        </div>
+
+        <!-- ===== 反方 ===== -->
+        <div class="tab-panel active" id="panel-neg" role="tabpanel">
+          <div class="en-label" style="color:var(--muted)">網路給它的綽號 / What the internet called it</div>
+          <div class="nicknames">
+            <span class="nick">“iPhone on wheels”</span>
+            <span class="nick">“a Honda wannabe”</span>
+            <span class="nick">“Ferrari Multipla”</span>
+            <span class="nick">「醜到連中國都不會抄」</span>
+          </div>
+          <div class="ctrl-grid" style="margin-top:30px">
+            <div class="ctrl-card neg">
+              <span class="tag">前董事長 · Former Chairman</span>
+              <blockquote>I hope they take off the prancing horse from that car.</blockquote>
+              <p class="src">— Luca di Montezemolo，法拉利前董事長（1991–2014）</p>
+              <p><span class="zh">這位曾誓言「在我任內法拉利絕不造電動車」的傳奇掌門人直言，Luce 恐將「摧毀一則傳奇」，並語帶嘲諷地說這是「至少中國人不會抄的車」。他去年加入了競爭對手 McLaren
+                  董事會，使這番批評既私人又帶競爭意味。</span></p>
+            </div>
+            <div class="ctrl-card neg">
+              <span class="tag">政界 · Politics</span>
+              <blockquote>義大利副總理也加入炮火</blockquote>
+              <p class="src">— Matteo Salvini，義大利副總理兼交通部長</p>
+              <p>Italy's Deputy PM and Transport Minister Matteo Salvini publicly criticised the design, turning a car
+                launch into a national talking point. <span class="zh">一場新車發表，意外演成全國級的政治話題。</span></p>
+            </div>
+            <div class="ctrl-card neg">
+              <span class="tag">定價 · The Price</span>
+              <blockquote>€550,000 換來一輛「非典型」法拉利？</blockquote>
+              <p class="src">— 市場與社群普遍質疑</p>
+              <p><span class="zh">約 64 萬美元的售價，買到的卻是品牌史上最不像法拉利的車。批評者認為，當小米同週推出約 3.4 萬美元、續航更長的電動 SUV，Luce
+                  的定價與外型落差更顯尖銳。</span></p>
+            </div>
+            <div class="ctrl-card neg">
+              <span class="tag">品牌認同 · Brand Identity</span>
+              <blockquote>Ferrari just killed their brand just like Jaguar did.</blockquote>
+              <p class="src">— 社群媒體用戶（廣泛流傳的批評）</p>
+              <p><span class="zh">不少車迷將 Luce 與 Jaguar
+                  近年爭議性的品牌重塑相提並論，憂心法拉利為了電動化與家庭客群，稀釋了七十多年來純粹駕馭者的品牌核心。也有人直言它該「直接進廢車場」。</span></p>
+            </div>
+            <div class="ctrl-card neg">
+              <span class="tag">投資人 · Investors</span>
+              <blockquote>有史以來對車輛設計最劇烈的股價反應之一</blockquote>
+              <p class="src">— 投資人疑慮 · 股價單日重挫逾 8%</p>
+              <p><span class="zh">投資人擔心，若 Luce 銷售不如預期，高昂的研發成本將轉為虧損，侵蝕法拉利向來傲人的獲利率。發表後米蘭股價單日下跌逾 8%、紐約逾 5%。</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== 正方 ===== -->
+        <div class="tab-panel" id="panel-pos" role="tabpanel">
+          <div class="en-label" style="color:var(--gold)">支持論點 / The case for the Luce</div>
+          <div class="nicknames">
+            <span class="nick" style="border-color:rgba(201,162,75,.4);color:#e7d3a0">“a genuine game-changer”</span>
+            <span class="nick" style="border-color:rgba(201,162,75,.4);color:#e7d3a0">“a proper wow moment”</span>
+            <span class="nick" style="border-color:rgba(201,162,75,.4);color:#e7d3a0">大膽不冒進不行</span>
+            <span class="nick" style="border-color:rgba(201,162,75,.4);color:#e7d3a0">“This is the future”</span>
+          </div>
+          <div class="ctrl-grid" style="margin-top:30px">
+            <div class="ctrl-card pos">
+              <span class="tag">執行長 · CEO</span>
+              <blockquote>It has nothing to do with Chinese EVs or those by other brands.</blockquote>
+              <p class="src">— Benedetto Vigna，法拉利執行長</p>
+              <p><span class="zh">Vigna 強調定價合理、反映創新價值，並透露已收到客戶匯款訂車，「需求強勁，包括許多新客戶」。他也澄清法拉利並非要以電動全面取代內燃機——電動僅是 2030
+                  產品組合的一部分。</span></p>
+            </div>
+            <div class="ctrl-card pos">
+              <span class="tag">分析 · Analyst View</span>
+              <blockquote>市場反應雖劇烈，但言之過早</blockquote>
+              <p class="src">— Anthony Dick，Oddo BHF 汽車分析師</p>
+              <p>Analysts called it among the sharpest stock reactions ever seen to a car's design — yet cautioned it
+                was "too early to be overly concerned." <span class="zh">媒體與分析師也指出，法拉利成功將外型保密到發表當天，且 Top Gear
+                  等媒體盛讚這是「真正的遊戲規則改變者」。</span></p>
+            </div>
+            <div class="ctrl-card pos">
+              <span class="tag">首席設計師 · Chief Designer</span>
+              <blockquote>The Luce is exactly where Ferrari is heading.</blockquote>
+              <p class="src">— Flavio Manzoni，法拉利首席設計師</p>
+              <p><span class="zh">Manzoni 強調 Luce 不是副業或實驗品，而是法拉利的未來方向。他與 Jony Ive
+                  刻意避開「假造的內燃機戲劇感」，轉而追求另一種情感連結——屬於電動時代的法拉利語言。</span></p>
+            </div>
+            <div class="ctrl-card pos">
+              <span class="tag">座艙設計 · Interior</span>
+              <blockquote>逆向操作：用實體按鍵，而非滿屏觸控</blockquote>
+              <p class="src">— LoveFrom × Centro Stile 的設計選擇</p>
+              <p><span class="zh">有別於業界一面倒走向大型觸控螢幕，Luce
+                  座艙刻意採用大量實體切換鍵與觸覺操作——機械質感的金屬撥桿、玻璃按鍵與柔邊螢幕，被評論者視為對「觸控疲勞」的優雅反擊。</span></p>
+            </div>
+            <div class="ctrl-card pos">
+              <span class="tag">目標客群 · The Buyer</span>
+              <blockquote>別把 Luce 當成典型法拉利來看——它本來就不是。</blockquote>
+              <p class="src">— InsideEVs 評論觀點（改寫）</p>
+              <p><span
+                  class="zh">支持者指出，網路上猛烈開砲的多數人，並非這輛車的目標買家。法拉利對品牌力量了然於心，不可能「不小心」讓首款電動車長這樣——背後必有市場研究與潛在買家的正面回饋支撐。</span>
+              </p>
+            </div>
+            <div class="ctrl-card pos">
+              <span class="tag">訂單 · Demand</span>
+              <blockquote>客戶已經匯款下訂了</blockquote>
+              <p class="src">— Benedetto Vigna，法拉利執行長</p>
+              <p><span class="zh">儘管網路罵聲不斷，Vigna 透露已收到實際匯款訂單，且不乏全新的超富裕客戶。對一輛尚未交車、要價逾 50 萬歐元的車而言，這被視為需求真實存在的有力證據。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stock reveal">
+        <div><span class="k">−8%+</span><span class="l">Milan 米蘭股價<span class="zh">發表後重挫</span></span></div>
+        <div><span class="k">−5%+</span><span class="l">New York 紐約股價<span class="zh">同步下跌</span></span></div>
+        <div><span class="k">€550K</span><span class="l">爭議定價<span class="zh">約 64 萬美元</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEOS ===== -->
+<section id="videos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="en-label">Watch</div>
+      <h2>延伸影片 <span class="zh-h">／ <br/>Videos</span></h2>
+      <p>發表影片、評測與設計解析——點擊任一張卡片會在新分頁開啟 YouTube。Reveal films, reviews and design breakdowns — click to open on YouTube.</p>
+    </div>
+    <div class="vid-grid reveal" id="vidGrid"><!-- 由 JS 依 VIDEOS 清單產生 / rendered from VIDEOS list --></div>
+  </div>
+</section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="big">Ferrari <b><em>LUC</em>E</b><br><span style="font-size:.28em;letter-spacing:.3em;font-family:var(--body)">THE
+            LIGHT, AND THE STORM</span></div>
+        <div style="text-align:right;color:var(--muted);font-size:.82rem">
+          <div>Maranello, Italy</div>
+          <div>Unveiled 25 May 2026</div>
+          <div>Deliveries from Q4 2026</div>
+        </div>
+      </div>
+      <p class="disclaimer">
+        本網站為資訊與展示用途的非官方作品，與 Ferrari N.V. 無任何隸屬關係。所有商標與品牌名稱均屬其各自所有者。內容整理自公開新聞報導（CNN、Reuters、CNBC、Top Gear、Motor1
+        等），部分規格數字隨車廠正式公布可能有所調整。<br>
+        This is an unofficial, informational fan/demo page, not affiliated with or endorsed by Ferrari N.V. All
+        trademarks belong to their respective owners. Compiled from public reporting; figures may change upon official
+        confirmation.
+      </p>
+      <!-- <div class="credits">Bilingual Showcase · Built as a single-file HTML page · 2026</div> -->
+    </div>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="關閉 Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一張 Previous">&#8249;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="下一張 Next">&#8250;</button>
+    <figure class="lb-fig">
+      <img id="lbImg" src="" alt="">
+      <figcaption class="lb-cap" id="lbCap"></figcaption>
+    </figure>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+
+  <script>
+    /* =========================================================
+       圖片清單 GALLERY  —  在這裡填入你的圖片
+       src 可填：本機路徑 "images/luce-front.jpg"  或  外部連結 "https://…"
+       size: "wide"(大) / "tall"(直) / "std"(標準)
+       ========================================================= */
+    
+
+    const GALLERY = [
+      { src:"images/luce-exterior-front.jpg", size:"wide", en:"Glass-led exterior, front three-quarter", zh:"通透玻璃車體與前臉" },
+      { src:"images/luce-side.jpg",           size:"tall", en:"The taller silhouette",                 zh:"高大車身姿態" },
+      { src:"images/luce-interior-1.jpg",       size:"std",  en:"Cabin as a single clean volume",        zh:"極簡通透的座艙整體" },
+      { src:"images/luce-interior-2.jpg",       size:"std",  en:"Cabin as a single clean volume",        zh:"極簡通透的座艙整體" },
+      { src:"images/luce-wheel.jpg",          size:"std",  en:"Wheel & binnacle rotate as one unit",   zh:"方向盤與隨動儀錶護罩" },
+      { src:"images/luce-controls-1.jpg",       size:"std",  en:"Physical switches for high-frequency controls", zh:"高頻功能的實體按鍵" },
+      { src:"images/luce-controls-2.jpg",       size:"std",  en:"Physical switches for high-frequency controls", zh:"高頻功能的實體按鍵" },
+      { src:"images/luce-controls-3.jpg",       size:"std",  en:"Physical switches for high-frequency controls", zh:"高頻功能的實體按鍵" },
+      { src:"images/luce-screen.jpg",         size:"std",  en:"Custom-shaped tilting OLED touchscreen", zh:"可轉向的客製 OLED 觸控螢幕" },
+      { src:"images/luce-seats.jpg",          size:"std",  en:"Sculpted seats — comfort meets support", zh:"兼顧長途與支撐的雕塑座椅" },
+      { src:"images/luce-rear.jpg",           size:"std",  en:"Rear design",                           zh:"車尾與燈組" },
+      { src:"images/luce-colors.jpg",         size:"wide", en:"Launch colour lineup — red to white",   zh:"發表會五色車陣" },
+      // 範例：外部連結也可以這樣填（請確認已取得授權）
+      // { src:"https://example.com/your-licensed-image.jpg", size:"std", en:"Caption", zh:"圖說" },
+    ];
+
+    // Render gallery
+    const grid = document.getElementById('galGrid');
+    GALLERY.forEach((item, i) => {
+      const fig = document.createElement('figure');
+      fig.className = 'gal-item ' + (item.size || 'std');
+      fig.innerHTML = `
+      <img src="${item.src}" alt="${item.zh || 'Ferrari Luce'}" data-index="${i}"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="gal-ph" style="display:none">
+        <div class="ico">Luce</div>
+        <div class="fn">填入來源 <code>${item.src}</code></div>
+      </div>
+      <figcaption class="gal-cap">${item.zh} <span class="zh">${item.en}</span></figcaption>`;
+      grid.appendChild(fig);
+    });
+
+    /* =========================================================
+     影片清單 VIDEOS  —  在這裡貼上 YouTube 連結
+     url : 完整的 YouTube 連結（watch?v=… 或 youtu.be/… 皆可）
+     tag : 影片分類標籤（例如 發表 / 評測 / 設計解析）
+     en / zh : 影片標題（雙語，zh 可留空字串）
+     縮圖會自動依連結抓取 YouTube 預設縮圖。
+     ========================================================= */
+  const VIDEOS = [
+    { url:"https://www.youtube.com/watch?v=NKXQlzr75lo", tag:"聲浪 Sound", en:"The sound of the Luce", zh:"聆聽 Luce 的電動聲浪 | Motor1 Italia" },
+    { url:"https://www.youtube.com/watch?v=wMFO4zw6JCw", tag:"All-New Ferrari Electric Car", en:"All-New Ferrari Electric Car", zh:"當 Apple 設計師遇上法拉利 | Tai Choo Yee 戴祖億" },
+
+    { url:"https://www.youtube.com/watch?v=G5EfLkY54WI", tag:"Ferrari Luce: designing the invisible", en:"Ferrari Luce: designing the invisible", zh:"設計隱形之美 | Ferrari" },
+    { url:"https://www.youtube.com/watch?v=PuOwEuBnC_k", tag:"Hamilton and Leclerc unveiling the Ferrari Luce | Episode 4", en:"Hamilton and Leclerc unveiling the Ferrari Luce | Episode 4", zh:"Ferrari Luce 第四集 | Ferrari" },
+    { url:"https://www.youtube.com/watch?v=c_67jy3OqqQ", tag:"How we built the Ferrari Luce | Episode 3", en:"How we built the Ferrari Luce | Episode 3", zh:"Ferrari Luce 第三集 | Ferrari" },
+    { url:"https://www.youtube.com/watch?v=BhVjIw9cv_4", tag:"Ferrari Luce: The Design Approach | Episode 2", en:"Ferrari Luce: The Design Approach | Episode 2", zh:"Ferrari Luce 第二集 | Ferrari" },
+  ];
+
+  // 從各種 YouTube 連結格式取出影片 ID
+  function ytId(url){
+    const m = url.match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  const vidGrid=document.getElementById('vidGrid');
+  VIDEOS.forEach(v=>{
+    const id=ytId(v.url);
+    const thumb = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : "";
+    const a=document.createElement('a');
+    a.className='vid-card';
+    a.href=v.url; a.target='_blank'; a.rel='noopener noreferrer';
+    a.innerHTML=`
+      <div class="vid-thumb">
+        ${thumb?`<img src="${thumb}" alt="${v.zh||v.en||'YouTube'}" loading="lazy">`:''}
+        <div class="play"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      </div>
+      <div class="vid-info">
+        <div class="t">${v.en||''}<span class="zh">${v.zh||''}</span></div>
+        <div class="meta">${v.tag||'YouTube'} ↗</div>
+      </div>`;
+    vidGrid.appendChild(a);
+  });
+
+    // ===== Lightbox =====
+    const lb = document.getElementById('lightbox'),
+      lbImg = document.getElementById('lbImg'),
+      lbCap = document.getElementById('lbCap'),
+      lbCount = document.getElementById('lbCount');
+    let current = 0;
+    const loadable = () => GALLERY.map((g, i) => i); // indices; broken images simply show nothing
+
+    function openLB(i) {
+      current = i;
+      const item = GALLERY[i];
+      lbImg.src = item.src;
+      lbImg.alt = item.zh || '';
+      lbCap.innerHTML = `${item.zh} <span class="zh">${item.en}</span>`;
+      lbCount.textContent = `${i + 1} / ${GALLERY.length}`;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function step(d) {
+      current = (current + d + GALLERY.length) % GALLERY.length;
+      openLB(current);
+    }
+
+    // open only when the actual image loaded (skip placeholders)
+    grid.addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if (img && img.style.display !== 'none') openLB(+img.dataset.index);
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', () => step(-1));
+    document.getElementById('lbNext').addEventListener('click', () => step(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+    addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
+    });
+
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Pro/con tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    const nav = document.querySelector('nav');
+    addEventListener('scroll', () => {
+      nav.style.background = scrollY > 40
+        ? 'rgba(8,8,10,.85)'
+        : 'linear-gradient(180deg,rgba(8,8,10,.92),rgba(8,8,10,0))';
+    });
+  </script>
+</body>
+
+</html>
